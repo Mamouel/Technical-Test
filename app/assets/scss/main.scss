@@ -74,6 +74,10 @@ td {
   opacity: 1;
   transition: opacity 0.3s ease;
 
+  .theme-dark & {
+    color: $color-text-dark;
+  }
+
   &:hover {
     opacity: 0.8;
   }
