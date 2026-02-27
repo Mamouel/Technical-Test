@@ -97,6 +97,9 @@ GET /api/contacts?page=1&limit=20&search=emma&sortBy=lastName&sortDir=asc
 ## Décisions techniques
 
 - Utilisation de modules: @nuxt/image, nuxt-security, nuxt-svgo.
+- Utilisation de `@nuxt/i18n` pour un site multilangue
+- Fichiers `scss` pour avoir une architecture css globale et réutilisable
+- Tests Lighthouse pour performances, accessibilité, SEO et bonnes pratiques
 - Chargement progressif via sentinel (`IntersectionObserver`).
 - Tests API basés sur mock d’event H3 (`node.req.url`).
 - Alias Vite/Vitest alignés pour `@` et `~` vers `app/`.

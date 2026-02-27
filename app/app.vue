@@ -1,13 +1,15 @@
 <template>
   <div>
     <CoreHeader />
-    <NuxtPage
-      :transition="{
-        name: 'page',
-        mode: 'out-in',
-        onBeforeEnter,
-      }"
-    />
+    <main id="main-content">
+      <NuxtPage
+        :transition="{
+          name: 'page',
+          mode: 'out-in',
+          onBeforeEnter,
+        }"
+      />
+    </main>
   </div>
 </template>
 

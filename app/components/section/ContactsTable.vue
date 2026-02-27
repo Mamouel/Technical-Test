@@ -5,7 +5,7 @@
     class="contacts-table__state contacts-table__state--error"
   >
     <p>{{ $t("contact.errorLoading") }}</p>
-    <button @click="retryFetch" class="contacts-table__retry">
+    <button type="button" @click="retryFetch" class="contacts-table__retry">
       {{ $t("contact.retry") }}
     </button>
   </div>
@@ -15,7 +15,7 @@
     v-else
     class="contacts-table__table-wrapper"
     role="region"
-    aria-label="Contacts table"
+    :aria-label="$t('contact.aria.tableRegion')"
   >
     <table class="contacts-table__table" role="table">
       <caption class="sr-only">
@@ -92,7 +92,7 @@
             role="cell"
             aria-live="polite"
           >
-            <span role="status" aria-label="Loading contacts">{{
+            <span role="status" :aria-label="$t('contact.aria.loadingContacts')">{{
               $t("contact.table.loading")
             }}</span>
           </td>
@@ -118,14 +118,24 @@
           role="row"
           tabindex="0"
           :aria-rowindex="index + 1"
-          :aria-label="`Contact: ${contact.firstName} ${contact.lastName}`"
+          :aria-label="
+            $t('contact.aria.contactRow', {
+              firstName: contact.firstName,
+              lastName: contact.lastName,
+            })
+          "
           @keydown="handleRowKeydown($event, contact)"
         >
           <td class="sticky-column" role="cell">
             <div class="contacts-table__name">
               <NuxtPicture
                 :src="contact.avatar"
-                :alt="`Avatar of ${contact.firstName} ${contact.lastName}`"
+                :alt="
+                  $t('contact.aria.avatarAlt', {
+                    firstName: contact.firstName,
+                    lastName: contact.lastName,
+                  })
+                "
                 class="contacts-table__avatar"
                 role="img"
               />
@@ -137,9 +147,11 @@
               class="contacts-table__status"
               :class="`contacts-table__status--${contact.status.toLowerCase()}`"
               :aria-label="
-                locale === 'en'
-                  ? `Status: ${contact.status}`
-                  : `Statut: ${contact.status}`
+                contact.status
+                  ? $t('contact.aria.statusValue', {
+                      value: $t(`contact.status.${contact.status.toLowerCase()}`),
+                    })
+                  : ''
               "
               role="status"
             >
@@ -153,9 +165,7 @@
           <td role="cell">
             <span
               :aria-label="
-                locale === 'en'
-                  ? `Company: ${contact.company}`
-                  : `Entreprise: ${contact.company}`
+                $t('contact.aria.companyValue', { value: contact.company })
               "
               >{{ contact.company }}</span
             >
@@ -167,18 +177,14 @@
                 :is="getCountryFlag(contact.country)"
                 class="contacts-table__flag"
                 :aria-label="
-                  locale === 'en'
-                    ? `${contact.country} flag`
-                    : `Drapeau ${contact.country}`
+                  $t('contact.aria.countryFlag', { country: contact.country })
                 "
                 role="img"
               />
               <span
                 class="contacts-table__phone-number"
                 :aria-label="
-                  locale === 'en'
-                    ? `Phone: ${contact.phone}`
-                    : `Téléphone: ${contact.phone}`
+                  $t('contact.aria.phoneValue', { value: contact.phone })
                 "
               >
                 {{ contact.phone }}
@@ -189,9 +195,11 @@
             <a
               :href="`mailto:${contact.email}`"
               :aria-label="
-                locale === 'en'
-                  ? `Send email to ${contact.firstName} ${contact.lastName} at ${contact.email}`
-                  : `Envoyer un courriel à ${contact.firstName} ${contact.lastName} à ${contact.email}`
+                $t('contact.aria.emailContact', {
+                  firstName: contact.firstName,
+                  lastName: contact.lastName,
+                  email: contact.email,
+                })
               "
             >
               {{ contact.email }}
@@ -210,8 +218,6 @@ import SvgoSweden from "@/assets/svg/icon-sweden.svg";
 import SvgoJapan from "@/assets/svg/icon-japan.svg";
 import SvgoPortugal from "@/assets/svg/icon-portugal.svg";
 import type { Contact, SortConfig } from "../../../types";
-
-const { locale } = useI18n();
 const ACTIVATION_KEYS = new Set(["Enter", " "]);
 
 const countryFlags = {

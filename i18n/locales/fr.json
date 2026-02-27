@@ -3,6 +3,7 @@
     "title": "Test Technique Ringover",
     "home": "Accueil",
     "contacts": "Contacts",
+    "navigation": "Navigation principale",
     "themeLight": "Passer en mode clair",
     "themeDark": "Passer en mode sombre"
   },
@@ -34,7 +35,12 @@
       "countryLabel": "Pays",
       "statusLabel": "Statut",
       "companyLabel": "Entreprise",
-      "reset": "Réinitialiser les filtres"
+      "reset": "Réinitialiser les filtres",
+      "showFilters": "Afficher les filtres de contacts",
+      "hideFilters": "Masquer les filtres de contacts",
+      "panelLabel": "Filtres de contacts",
+      "noneApplied": "Aucun filtre actif",
+      "appliedCount": "{count} filtres actifs"
     },
     "status": {
       "lead": "Prospect",
@@ -55,6 +61,17 @@
       "company": "Trier par entreprise",
       "status": "Trier par statut",
       "email": "Trier par courriel"
+    },
+    "aria": {
+      "tableRegion": "Tableau des contacts",
+      "loadingContacts": "Chargement des contacts",
+      "contactRow": "Contact : {firstName} {lastName}",
+      "avatarAlt": "Avatar de {firstName} {lastName}",
+      "statusValue": "Statut : {value}",
+      "companyValue": "Entreprise : {value}",
+      "countryFlag": "Drapeau {country}",
+      "phoneValue": "Téléphone : {value}",
+      "emailContact": "Envoyer un courriel à {firstName} {lastName} à {email}"
     }
   },
   "seo": {

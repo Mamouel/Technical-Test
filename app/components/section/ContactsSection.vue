@@ -1,8 +1,14 @@
 <template>
-  <div class="contacts flex flex-col gap-4 container">
+  <section
+    class="contacts flex flex-col gap-4 container"
+    role="region"
+    aria-labelledby="contacts-heading"
+  >
     <div class="contacts__hero">
-      <h1 class="h1-style">{{ $t("contact.title") }}</h1>
-      <button class="btn"><SvgoLaunch />{{ $t("contact.cta") }}</button>
+      <h1 id="contacts-heading" class="h1-style">{{ $t("contact.title") }}</h1>
+      <button type="button" class="btn">
+        <SvgoLaunch />{{ $t("contact.cta") }}
+      </button>
     </div>
 
     <!-- Search and Filters -->
@@ -25,16 +31,39 @@
           />
         </div>
 
-        <button class="contacts__toolbar__filters-icon" @click="displayFilters">
-          <SvgoSort />
-          <span v-show="filtersApplied > 0">{{ filtersApplied }}</span>
+        <button
+          type="button"
+          class="contacts__toolbar__filters-icon"
+          :aria-expanded="filtersVisible"
+          aria-controls="contacts-filters-panel"
+          :aria-label="
+            filtersVisible
+              ? $t('contact.filters.hideFilters')
+              : $t('contact.filters.showFilters')
+          "
+          @click="displayFilters"
+        >
+          <SvgoSort aria-hidden="true" focusable="false" />
+          <span v-show="filtersApplied > 0" aria-hidden="true">{{
+            filtersApplied
+          }}</span>
+          <span class="sr-only">
+            {{
+              filtersApplied > 0
+                ? $t("contact.filters.appliedCount", { count: filtersApplied })
+                : $t("contact.filters.noneApplied")
+            }}
+          </span>
         </button>
       </div>
 
       <!-- Filters -->
       <div
+        id="contacts-filters-panel"
         v-show="filtersVisible"
         class="contacts__toolbar__filters flex items-center gap-4 flex-wrap"
+        role="region"
+        :aria-label="$t('contact.filters.panelLabel')"
       >
         <div class="filter-group">
           <label for="status-filter" class="filter-label"
@@ -106,6 +135,7 @@
         </div>
 
         <button
+          type="button"
           @click="clearFilters"
           class="clear-filters-btn btn"
           :disabled="!hasActiveFilters"
@@ -132,7 +162,7 @@
 
     <!-- Sentinel for infinite scroll -->
     <div ref="sentinel" class="contacts__sentinel" />
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

@@ -4,25 +4,32 @@
       <h1 class="header__container__title">{{ $t("header.title") }}</h1>
 
       <div class="header__container__links">
-        <NuxtLinkLocale :to="localePath('/')" class="nav-link body-l-style">{{
-          $t("header.home")
-        }}</NuxtLinkLocale>
+        <nav :aria-label="$t('header.navigation')">
+          <NuxtLinkLocale :to="localePath('/')" class="nav-link body-l-style">{{
+            $t("header.home")
+          }}</NuxtLinkLocale>
 
-        <NuxtLinkLocale
-          :to="localePath('/contacts')"
-          class="nav-link body-l-style"
-          >{{ $t("header.contacts") }}</NuxtLinkLocale
-        >
+          <NuxtLinkLocale
+            :to="localePath('/contacts')"
+            class="nav-link body-l-style"
+            >{{ $t("header.contacts") }}</NuxtLinkLocale
+          >
 
-        <NuxtLink
-          v-for="locale in availableLocales"
-          :key="locale.code"
-          :to="switchLocalePath(locale.code)"
-          class="nav-link body-l-style"
+          <NuxtLink
+            v-for="locale in availableLocales"
+            :key="locale.code"
+            :to="switchLocalePath(locale.code)"
+            class="nav-link body-l-style"
+          >
+            {{ locale.code }}
+          </NuxtLink>
+        </nav>
+        <button
+          type="button"
+          class="header__container__button btn"
+          :aria-pressed="theme === 'dark'"
+          @click="changeTheme"
         >
-          {{ locale.code }}
-        </NuxtLink>
-        <button class="header__container__button btn" @click="changeTheme">
           {{
             theme === "light" ? $t("header.themeDark") : $t("header.themeLight")
           }}
@@ -72,6 +79,13 @@ const changeTheme = () => {
       align-items: center;
       color: var(--text-color);
       width: 100%;
+
+      nav {
+        display: flex;
+        gap: calc($gap * 3);
+        align-items: center;
+      }
+
       a {
         color: var(--text-color);
         text-decoration: none;

@@ -3,6 +3,7 @@
     "title": "Ringover Technical Test",
     "home": "Home",
     "contacts": "Contacts",
+    "navigation": "Main navigation",
     "themeLight": "Switch to Light Mode",
     "themeDark": "Switch to Dark Mode"
   },
@@ -34,7 +35,12 @@
       "countryLabel": "Country",
       "statusLabel": "Status",
       "companyLabel": "Company",
-      "reset": "Reset Filters"
+      "reset": "Reset Filters",
+      "showFilters": "Show contact filters",
+      "hideFilters": "Hide contact filters",
+      "panelLabel": "Contact filters",
+      "noneApplied": "No active filters",
+      "appliedCount": "{count} filters currently applied"
     },
     "status": {
       "lead": "Lead",
@@ -55,6 +61,17 @@
       "company": "Sort by company",
       "status": "Sort by status",
       "email": "Sort by email"
+    },
+    "aria": {
+      "tableRegion": "Contacts table",
+      "loadingContacts": "Loading contacts",
+      "contactRow": "Contact: {firstName} {lastName}",
+      "avatarAlt": "Avatar of {firstName} {lastName}",
+      "statusValue": "Status: {value}",
+      "companyValue": "Company: {value}",
+      "countryFlag": "{country} flag",
+      "phoneValue": "Phone: {value}",
+      "emailContact": "Send email to {firstName} {lastName} at {email}"
     }
   },
   "seo": {
