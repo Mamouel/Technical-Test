@@ -1,0 +1,38 @@
+$regular: "Inter";
+
+@mixin fontSizeResponsive($max, $min, $maxNumber) {
+  font-size: clamp($min, calc($maxNumber / 1440 * 100vw), calc($max * 1.5));
+}
+
+@mixin h1-style {
+  // Font-size 28 in figma
+  $h1Style: 28px;
+  $h1StyleNum: 28;
+  $h1StyleMobile: 20px;
+  @include fontSizeResponsive($h1Style, $h1StyleMobile, $h1StyleNum);
+  line-height: 150%;
+  font-family: $regular;
+  font-weight: 500;
+}
+
+@mixin h2-style {
+  // Font-size 24 in figma
+  $h2Style: 24px;
+  $h2StyleNum: 24;
+  $h2StyleMobile: 18px;
+  @include fontSizeResponsive($h2Style, $h2StyleMobile, $h2StyleNum);
+  line-height: 150%;
+  font-family: $regular;
+  font-weight: 500;
+}
+
+@mixin body-style {
+  // Font-size 14 in figma
+  $bodyStyle: 14px;
+  $bodyStyleNum: 14;
+  $bodyStyleMobile: 12px;
+  @include fontSizeResponsive($bodyStyle, $bodyStyleMobile, $bodyStyleNum);
+  line-height: 150%;
+  font-family: $regular;
+  font-weight: 500;
+}
