@@ -151,97 +151,87 @@ function generateContacts(count = 200): Contact[] {
 const MOCK_CONTACTS: Contact[] = generateContacts(220);
 
 export default defineEventHandler((event) => {
-  try {
-    const rawUrl =
-      (event as any)?.node?.req?.url ??
-      (event as any)?.req?.url ??
-      "/api/contacts";
+  const rawUrl =
+    (event as any)?.node?.req?.url ??
+    (event as any)?.req?.url ??
+    "/api/contacts";
 
-    const query = Object.fromEntries(
-      new URL(rawUrl, "http://localhost").searchParams.entries(),
-    ) as Record<string, string>;
+  const query = Object.fromEntries(
+    new URL(rawUrl, "http://localhost").searchParams.entries(),
+  ) as Record<string, string>;
 
-    // --- Query params ---
-    const page = Number(query.page ?? 1);
-    const limit = Number(query.limit ?? 10);
-    const skipParam = query.skip ? Number(query.skip) : null;
-    const search = (query.search as string)?.toLowerCase() || "";
-    const sortBy = (query.sortBy as keyof Contact) || "id";
-    const sortDir = (query.sortDir as "asc" | "desc") || "asc";
+  // --- Query params ---
+  const page = Number(query.page ?? 1);
+  const limit = Number(query.limit ?? 10);
+  const skipParam = query.skip ? Number(query.skip) : null;
+  const search = (query.search as string)?.toLowerCase() || "";
+  const sortBy = (query.sortBy as keyof Contact) || "id";
+  const sortDir = (query.sortDir as "asc" | "desc") || "asc";
 
-    // --- Filter params ---
-    const statusFilter = query.status as string;
-    const countryFilter = query.country as string;
-    const companyFilter = query.company as string;
+  // --- Filter params ---
+  const statusFilter = query.status as string;
+  const countryFilter = query.country as string;
+  const companyFilter = query.company as string;
 
-    // --- Pagination logic (page OR skip) ---
-    const skip = skipParam !== null ? skipParam : (page - 1) * limit;
+  // --- Pagination logic (page OR skip) ---
+  const skip = skipParam !== null ? skipParam : (page - 1) * limit;
 
-    let data = [...MOCK_CONTACTS];
+  let data = [...MOCK_CONTACTS];
 
-    // --- Search (firstName, lastName, email, company, country) ---
-    if (search) {
-      data = data.filter((contact) =>
-        `${contact.firstName} ${contact.lastName} ${contact.email} ${contact.company} ${contact.country}`
-          .toLowerCase()
-          .includes(search),
-      );
-    }
-
-    // --- Filters ---
-    if (statusFilter) {
-      data = data.filter((contact) => contact.status === statusFilter);
-    }
-
-    if (countryFilter) {
-      data = data.filter((contact) => contact.country === countryFilter);
-    }
-
-    if (companyFilter) {
-      data = data.filter((contact) => contact.company === companyFilter);
-    }
-
-    // --- Sorting ---
-    data.sort((a, b) => {
-      const aValue = a[sortBy];
-      const bValue = b[sortBy];
-
-      if (aValue === bValue) return 0;
-
-      const comparison = aValue! > bValue! ? 1 : -1;
-
-      return sortDir === "asc" ? comparison : -comparison;
-    });
-
-    // --- Total after filters ---
-    const total = data.length;
-
-    // --- Paginated items ---
-    const items = data.slice(skip, skip + limit);
-
-    // --- Meta ---
-    const totalPages = Math.ceil(total / limit);
-    const currentPage =
-      skipParam !== null ? Math.floor(skip / limit) + 1 : page;
-
-    return {
-      items,
-      total,
-      meta: {
-        page: currentPage,
-        limit,
-        skip,
-        totalPages,
-        hasNextPage: skip + limit < total,
-        hasPreviousPage: currentPage > 1,
-      },
-    };
-  } catch (err: any) {
-    console.error("contacts.get failed:", err);
-    throw createError({
-      statusCode: 500,
-      statusMessage: "Internal Server Error",
-      data: err?.message ?? "unknown error",
-    });
+  // --- Search (firstName, lastName, email, company, country) ---
+  if (search) {
+    data = data.filter((contact) =>
+      `${contact.firstName} ${contact.lastName} ${contact.email} ${contact.company} ${contact.country}`
+        .toLowerCase()
+        .includes(search),
+    );
   }
+
+  // --- Filters ---
+  if (statusFilter) {
+    data = data.filter((contact) => contact.status === statusFilter);
+  }
+
+  if (countryFilter) {
+    data = data.filter((contact) => contact.country === countryFilter);
+  }
+
+  if (companyFilter) {
+    data = data.filter((contact) => contact.company === companyFilter);
+  }
+
+  // --- Sorting ---
+  data.sort((a, b) => {
+    const aValue = a[sortBy];
+    const bValue = b[sortBy];
+
+    if (aValue === bValue) return 0;
+
+    const comparison = aValue! > bValue! ? 1 : -1;
+
+    return sortDir === "asc" ? comparison : -comparison;
+  });
+
+  // --- Total after filters ---
+  const total = data.length;
+
+  // --- Paginated items ---
+  const items = data.slice(skip, skip + limit);
+
+  // --- Meta ---
+  const totalPages = Math.ceil(total / limit);
+  const currentPage = skipParam !== null ? Math.floor(skip / limit) + 1 : page;
+
+  return {
+    items,
+    total,
+    meta: {
+      page: currentPage,
+      limit,
+      skip,
+      totalPages,
+      hasNextPage: skip + limit < total,
+      hasPreviousPage: currentPage > 1,
+    },
+  };
 });

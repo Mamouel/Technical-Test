@@ -23,7 +23,6 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.4",
     "@vue/test-utils": "^2.4.6",
-    "h3": "2.0.1-rc.14",
     "jsdom": "^28.1.0",
     "sass": "^1.97.3",
     "vite-svg-loader": "^5.1.0",
