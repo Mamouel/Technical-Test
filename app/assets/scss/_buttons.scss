@@ -1,0 +1,30 @@
+@use "index" as *;
+
+.btn {
+  display: flex;
+  height: 40px;
+  padding: 0 16px;
+  justify-content: center;
+  align-items: center;
+  gap: $gap;
+  background-color: transparent;
+  color: $color-primary;
+  border: none;
+  cursor: pointer;
+  font-family: $regular;
+  opacity: 1;
+  transition: color 0.3s ease;
+
+  .theme-dark & {
+    color: $color-text-dark;
+  }
+
+  &:hover {
+    color: var(--primary-color);
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}

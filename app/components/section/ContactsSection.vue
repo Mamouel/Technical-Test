@@ -1,5 +1,5 @@
 <template>
-  <div class="contacts flex flex-col gap-4">
+  <div class="contacts flex flex-col gap-4 container">
     <div class="contacts__hero">
       <h1 class="h1-style">{{ $t("contact.title") }}</h1>
       <button class="btn"><SvgoLaunch />{{ $t("contact.cta") }}</button>

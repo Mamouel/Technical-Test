@@ -7,7 +7,7 @@
     "themeDark": "Switch to Dark Mode"
   },
   "home": {
-    "welcome": "Welcome to our application!",
+    "welcome": "Welcome!",
     "description": "This is a simple Nuxt 4 application built for the Ringover technical assessment. Please explore the Contacts page to view the list of contacts fetched from the server.",
     "cta": "Go to Contacts"
   },

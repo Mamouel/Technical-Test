@@ -7,7 +7,7 @@
     "themeDark": "Passer en mode sombre"
   },
   "home": {
-    "welcome": "Bienvenue dans notre application !",
+    "welcome": "Bienvenue!",
     "description": "Ceci est une simple application Nuxt 4 construite pour l'évaluation technique de Ringover. Veuillez explorer la page Contacts pour voir la liste des contacts récupérés depuis le serveur.",
     "cta": "Aller aux Contacts"
   },

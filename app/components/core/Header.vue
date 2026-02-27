@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <div class="header__container">
+    <div class="header__container container">
       <h1 class="header__container__title">{{ $t("header.title") }}</h1>
 
       <div class="header__container__links">
@@ -53,7 +53,7 @@ const changeTheme = () => {
 .header {
   background-color: var(--theme-color);
   color: var(--text-color);
-  padding: $padding;
+  padding: $padding 0;
   margin-bottom: $margin;
   transition:
     $background-transition,
@@ -78,7 +78,7 @@ const changeTheme = () => {
         transition: color 0.3s ease;
 
         &:hover {
-          color: var(--accent-color);
+          color: var(--primary-color);
         }
 
         &.router-link-active {

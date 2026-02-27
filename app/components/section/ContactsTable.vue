@@ -204,7 +204,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted, watch } from "vue";
 import SvgoCanada from "@/assets/svg/icon-canada.svg";
 import SvgoGermany from "@/assets/svg/icon-germany.svg";
 import SvgoSweden from "@/assets/svg/icon-sweden.svg";
