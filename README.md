@@ -96,7 +96,7 @@ GET /api/contacts?page=1&limit=20&search=emma&sortBy=lastName&sortDir=asc
 
 ## Décisions techniques
 
-- Table pilotée par props côté composant d’affichage.
+- Utilisation de modules: @nuxt/image, nuxt-security, nuxt-svgo.
 - Chargement progressif via sentinel (`IntersectionObserver`).
 - Tests API basés sur mock d’event H3 (`node.req.url`).
 - Alias Vite/Vitest alignés pour `@` et `~` vers `app/`.
