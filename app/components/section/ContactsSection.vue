@@ -25,8 +25,8 @@
           />
         </div>
 
-        <button class="contacts__toolbar__filters-icon">
-          <SvgoSort @click="displayFilters" />
+        <button class="contacts__toolbar__filters-icon" @click="displayFilters">
+          <SvgoSort />
           <span v-show="filtersApplied > 0">{{ filtersApplied }}</span>
         </button>
       </div>
