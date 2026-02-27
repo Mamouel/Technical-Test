@@ -13,9 +13,17 @@
 
 <script setup lang="ts">
 const { finalizePendingLocaleChange, locale } = useI18n();
+const i18nHead = useLocaleHead();
+
 const onBeforeEnter = async () => {
   await finalizePendingLocaleChange();
 };
+
+useHead({
+  htmlAttrs: {
+    lang: () => i18nHead.value.htmlAttrs.lang,
+  },
+});
 </script>
 
 <style lang="scss">

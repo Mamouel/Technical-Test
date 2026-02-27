@@ -33,4 +33,14 @@ export default defineNuxtConfig({
     skipSettingLocaleOnNavigate: true,
     strategy: "prefix_except_default",
   },
+
+  app: {
+    head: {
+      title: "Ringover Technical assignment", // default fallback title
+      htmlAttrs: {
+        lang: "en",
+      },
+      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    },
+  },
 });

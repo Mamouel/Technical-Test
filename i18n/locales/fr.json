@@ -56,5 +56,15 @@
       "status": "Trier par statut",
       "email": "Trier par courriel"
     }
+  },
+  "seo": {
+    "home": {
+      "title": "Accueil - Test Technique Ringover",
+      "description": "Bienvenue sur l'application de test technique de Ringover. Explorez la page Contacts pour voir la liste des contacts récupérés depuis le serveur."
+    },
+    "contacts": {
+      "title": "Contacts - Test Technique Ringover",
+      "description": "Découvrez la liste des contacts dans l'application de test technique de Ringover. Utilisez les filtres et les options de tri pour trouver rapidement les informations dont vous avez besoin."
+    }
   }
 }

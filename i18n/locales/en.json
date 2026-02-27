@@ -56,5 +56,15 @@
       "status": "Sort by status",
       "email": "Sort by email"
     }
+  },
+  "seo": {
+    "home": {
+      "title": "Home - Ringover Technical Test",
+      "description": "Welcome to the Ringover technical test application. Explore the Contacts page to see the list of contacts fetched from the server."
+    },
+    "contacts": {
+      "title": "Contacts - Ringover Technical Test",
+      "description": "Discover the contact list in the Ringover technical test application. Use filters and sorting options to quickly find the information you need."
+    }
   }
 }

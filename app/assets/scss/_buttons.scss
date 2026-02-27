@@ -8,7 +8,7 @@
   align-items: center;
   gap: $gap;
   background-color: transparent;
-  color: $color-primary;
+  color: $color-primary-dark;
   border: none;
   cursor: pointer;
   font-family: $regular;
@@ -20,7 +20,7 @@
   }
 
   &:hover {
-    color: var(--primary-color);
+    color: $color-primary;
   }
 
   svg {
