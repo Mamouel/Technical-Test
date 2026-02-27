@@ -25,7 +25,9 @@
       "number": "Number",
       "email": "Email",
       "noContacts": "No contacts found.",
-      "loading": "Loading contacts..."
+      "loading": "Loading contacts...",
+      "contactList": "Contact list with",
+      "contactListafter": "contacts. Use tab to navigate and Enter to sort columns."
     },
     "filters": {
       "all": "All",

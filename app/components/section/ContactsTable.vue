@@ -19,11 +19,15 @@
   >
     <table class="contacts-table__table" role="table">
       <caption class="sr-only">
-        Contacts list with
+        {{
+          $t("contact.table.contactList")
+        }}
         {{
           contacts.length
         }}
-        entries. Use tabulation to navigate and Enter to sort columns.
+        {{
+          $t("contact.table.contactListafter")
+        }}
       </caption>
       <thead>
         <tr role="row">

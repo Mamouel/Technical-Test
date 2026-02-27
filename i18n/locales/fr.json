@@ -25,7 +25,9 @@
       "number": "Numéro",
       "email": "Courriel",
       "noContacts": "Aucun contact trouvé.",
-      "loading": "Chargement des contacts..."
+      "loading": "Chargement des contacts...",
+      "contactList": "Liste des contacts avec",
+      "contactListafter": "contacts. Utilisez la tabulation pour naviguer et Entrer pour trier les colonnes."
     },
     "filters": {
       "all": "Tous",
