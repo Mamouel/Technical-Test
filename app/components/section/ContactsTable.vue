@@ -5,7 +5,7 @@
     class="contacts-table__state contacts-table__state--error"
   >
     <p>{{ $t("contact.errorLoading") }}</p>
-    <button @click="fetchContacts(true)" class="contacts-table__retry">
+    <button @click="retryFetch" class="contacts-table__retry">
       {{ $t("contact.retry") }}
     </button>
   </div>
@@ -212,6 +212,15 @@ import SvgoPortugal from "@/assets/svg/icon-portugal.svg";
 import type { Contact, SortConfig } from "../../../types";
 
 const { locale } = useI18n();
+const ACTIVATION_KEYS = new Set(["Enter", " "]);
+
+const countryFlags = {
+  canada: SvgoCanada,
+  germany: SvgoGermany,
+  sweden: SvgoSweden,
+  japan: SvgoJapan,
+  portugal: SvgoPortugal,
+} as const;
 
 // define props
 const props = defineProps<{
@@ -232,11 +241,7 @@ const toggleSort = (field: string) => {
   emit("sort", field);
 };
 
-const fetchContacts = (reset: boolean) => {
-  if (reset) {
-    emit("retry");
-  }
-};
+const retryFetch = () => emit("retry");
 
 const getSortAriaValue = (
   field: string,
@@ -248,38 +253,22 @@ const getSortAriaValue = (
 };
 
 const handleKeydown = (event: KeyboardEvent, field: string) => {
-  // Support pour Enter et Espace
-  if (event.key === "Enter" || event.key === " ") {
+  if (ACTIVATION_KEYS.has(event.key)) {
     event.preventDefault();
     toggleSort(field);
   }
 };
 
 const handleRowKeydown = (event: KeyboardEvent, contact: Contact) => {
-  // Support pour Enter et Espace pour sélectionner une ligne
-  if (event.key === "Enter" || event.key === " ") {
+  if (ACTIVATION_KEYS.has(event.key)) {
     event.preventDefault();
     emit("contact-select", contact);
   }
 };
 
 const getCountryFlag = (country: string) => {
-  switch (country.toLowerCase()) {
-    case "canada":
-      return SvgoCanada;
-    case "united states":
-      return null;
-    case "germany":
-      return SvgoGermany;
-    case "sweden":
-      return SvgoSweden;
-    case "japan":
-      return SvgoJapan;
-    case "portugal":
-      return SvgoPortugal;
-    default:
-      return null;
-  }
+  const normalizedCountry = country.toLowerCase() as keyof typeof countryFlags;
+  return countryFlags[normalizedCountry] ?? null;
 };
 </script>
 

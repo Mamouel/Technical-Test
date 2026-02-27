@@ -147,6 +147,18 @@ import type {
   FilterConfig,
 } from "../../../types";
 
+const SORTABLE_FIELDS = [
+  "id",
+  "firstName",
+  "status",
+  "company",
+  "email",
+] as const;
+type SortableField = (typeof SORTABLE_FIELDS)[number];
+
+const isSortableField = (field: string): field is SortableField =>
+  SORTABLE_FIELDS.includes(field as SortableField);
+
 // ---- STATE ----
 const contacts = ref<Contact[]>([]);
 const total = ref(0);
@@ -265,12 +277,11 @@ watch(search, (val) => {
 
 // ---- SORT ----
 const toggleSort = (field: string) => {
-  if (sort.field === field) {
-    sort.dir = sort.dir === "asc" ? "desc" : "asc";
-  } else {
-    sort.field = field;
-    sort.dir = "asc";
-  }
+  if (!isSortableField(field)) return;
+
+  const isSameField = sort.field === field;
+  sort.field = field;
+  sort.dir = isSameField && sort.dir === "asc" ? "desc" : "asc";
   fetchContacts(true);
 };
 
