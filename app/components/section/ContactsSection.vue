@@ -1,10 +1,8 @@
 <template>
   <div class="contacts flex flex-col gap-4">
     <div class="contacts__hero">
-      <h1 class="h1-style">Contacts</h1>
-      <button class="btn">
-        <SvgoLaunch />Connect your CRM to import your contacts
-      </button>
+      <h1 class="h1-style">{{ $t("contact.title") }}</h1>
+      <button class="btn"><SvgoLaunch />{{ $t("contact.cta") }}</button>
     </div>
 
     <!-- Search and Filters -->
@@ -15,12 +13,14 @@
             v-show="search.trim() === ''"
             class="contacts__toolbar__search-icon"
           />
-          <label for="contact-search" class="sr-only">Search contacts</label>
+          <label for="contact-search" class="sr-only">{{
+            $t("contact.searchPlaceholder")
+          }}</label>
           <input
             id="contact-search"
             v-model="search"
             type="text"
-            placeholder="Search"
+            :placeholder="$t('contact.searchPlaceholder')"
             class="contacts__toolbar__search-input"
           />
         </div>
@@ -37,48 +37,60 @@
         class="contacts__toolbar__filters flex items-center gap-4 flex-wrap"
       >
         <div class="filter-group">
-          <label for="status-filter" class="filter-label">Status:</label>
+          <label for="status-filter" class="filter-label"
+            >{{ $t("contact.table.status") }}:</label
+          >
           <select
             id="status-filter"
             v-model="filters.status"
             class="filter-select"
             @change="applyFilters"
           >
-            <option value="">All</option>
-            <option value="Proposal">Proposal</option>
-            <option value="Lead">Lead</option>
-            <option value="Negotiation">Negotiation</option>
-            <option value="Deal">Deal</option>
+            <option value="">{{ $t("contact.filters.all") }}</option>
+            <option value="Proposal">
+              {{ $t("contact.status.proposal") }}
+            </option>
+            <option value="Lead">{{ $t("contact.status.lead") }}</option>
+            <option value="Negotiation">
+              {{ $t("contact.status.negotiation") }}
+            </option>
+            <option value="Deal">{{ $t("contact.status.deal") }}</option>
           </select>
         </div>
 
         <div class="filter-group">
-          <label for="country-filter" class="filter-label">Country:</label>
+          <label for="country-filter" class="filter-label"
+            >{{ $t("contact.filters.countryLabel") }}:</label
+          >
           <select
             id="country-filter"
             v-model="filters.country"
             class="filter-select"
             @change="applyFilters"
           >
-            <option value="">All</option>
-            <option value="Canada">Canada</option>
-            <option value="United States">United States</option>
-            <option value="Germany">Germany</option>
-            <option value="Japan">Japan</option>
-            <option value="Sweden">Sweden</option>
-            <option value="Portugal">Portugal</option>
+            <option value="">{{ $t("contact.filters.all") }}</option>
+            <option value="Canada">{{ $t("contact.countries.ca") }}</option>
+            <option value="United States">
+              {{ $t("contact.countries.us") }}
+            </option>
+            <option value="Germany">{{ $t("contact.countries.de") }}</option>
+            <option value="Japan">{{ $t("contact.countries.jp") }}</option>
+            <option value="Sweden">{{ $t("contact.countries.sw") }}</option>
+            <option value="Portugal">{{ $t("contact.countries.pt") }}</option>
           </select>
         </div>
 
         <div class="filter-group">
-          <label for="company-filter" class="filter-label">Company:</label>
+          <label for="company-filter" class="filter-label"
+            >{{ $t("contact.filters.companyLabel") }}:</label
+          >
           <select
             id="company-filter"
             v-model="filters.company"
             class="filter-select"
             @change="applyFilters"
           >
-            <option value="">All</option>
+            <option value="">{{ $t("contact.filters.all") }}</option>
             <option value="Figma">Figma</option>
             <option value="Ikea">Ikea</option>
             <option value="L'Oréal">L'Oréal</option>
@@ -98,7 +110,7 @@
           class="clear-filters-btn btn"
           :disabled="!hasActiveFilters"
         >
-          Clear Filters
+          {{ $t("contact.filters.reset") }}
         </button>
       </div>
     </div>
@@ -115,7 +127,7 @@
 
     <!-- Loading more -->
     <div v-if="isLoadingMore" class="contacts__loading-more">
-      Loading more...
+      <p>{{ $t("contact.loadingMore") }}</p>
     </div>
 
     <!-- Sentinel for infinite scroll -->
@@ -301,6 +313,7 @@ onMounted(async () => {
   &__hero {
     padding-bottom: $padding-bottom;
     gap: calc($gap * 2);
+    display: flex;
   }
 
   &__toolbar {
@@ -442,17 +455,5 @@ onMounted(async () => {
     border-color: var(--primary-color, #0066cc);
     box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.1);
   }
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }
 </style>

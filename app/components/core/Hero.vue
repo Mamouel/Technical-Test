@@ -1,18 +1,20 @@
 <template>
   <section class="hero">
     <div class="hero__container">
-      <h1 class="hero__container__title">Welcome</h1>
+      <h1 class="hero__container__title">{{ $t("home.welcome") }}</h1>
       <p class="hero__container__description">
-        This is a simple Nuxt 4 application to assess Ringover Technical Test.
-        Please explore the contacts page to see the list of contacts fetched
-        from the server.
+        {{ $t("home.description") }}
       </p>
-      <NuxtLink to="/contact" class="btn">Go to Contacts</NuxtLink>
+      <NuxtLinkLocale :to="localePath('/contacts')" class="btn">{{
+        $t("home.cta")
+      }}</NuxtLinkLocale>
     </div>
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const localePath = useLocalePath();
+</script>
 
 <style lang="scss" scoped>
 .hero {

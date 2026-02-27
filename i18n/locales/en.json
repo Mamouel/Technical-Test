@@ -1,0 +1,58 @@
+{
+  "header": {
+    "title": "Ringover Technical Test",
+    "home": "Home",
+    "contacts": "Contacts",
+    "themeLight": "Switch to Light Mode",
+    "themeDark": "Switch to Dark Mode"
+  },
+  "home": {
+    "welcome": "Welcome to our application!",
+    "description": "This is a simple Nuxt 4 application built for the Ringover technical assessment. Please explore the Contacts page to view the list of contacts fetched from the server.",
+    "cta": "Go to Contacts"
+  },
+  "contact": {
+    "title": "Contacts",
+    "cta": "Connect your CRM to import your contacts",
+    "searchPlaceholder": "Search",
+    "errorLoading": "Error loading contacts.",
+    "retry": "Retry",
+    "loadingMore": "Loading more...",
+    "table": {
+      "name": "Name",
+      "status": "Status",
+      "company": "Company",
+      "number": "Number",
+      "email": "Email",
+      "noContacts": "No contacts found.",
+      "loading": "Loading contacts..."
+    },
+    "filters": {
+      "all": "All",
+      "countryLabel": "Country",
+      "statusLabel": "Status",
+      "companyLabel": "Company",
+      "reset": "Reset Filters"
+    },
+    "status": {
+      "lead": "Lead",
+      "proposal": "Proposal",
+      "negotiation": "Negotiation",
+      "deal": "Deal"
+    },
+    "countries": {
+      "us": "United States",
+      "de": "Germany",
+      "sw": "Sweden",
+      "jp": "Japan",
+      "pt": "Portugal",
+      "ca": "Canada"
+    },
+    "sort": {
+      "name": "Sort by name",
+      "company": "Sort by company",
+      "status": "Sort by status",
+      "email": "Sort by email"
+    }
+  }
+}

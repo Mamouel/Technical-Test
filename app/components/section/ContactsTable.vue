@@ -4,9 +4,9 @@
     v-if="isError"
     class="contacts-table__state contacts-table__state--error"
   >
-    <p>Failed to load contacts.</p>
+    <p>{{ $t("contact.errorLoading") }}</p>
     <button @click="fetchContacts(true)" class="contacts-table__retry">
-      Retry
+      {{ $t("contact.retry") }}
     </button>
   </div>
 
@@ -34,9 +34,9 @@
             role="columnheader"
             tabindex="0"
             :aria-sort="getSortAriaValue('firstName')"
-            aria-label="Sort by name"
+            :aria-label="$t('contact.sort.name')"
           >
-            Name
+            {{ $t("contact.table.name") }}
             <span class="sort-indicator" :aria-hidden="true" />
           </th>
           <th
@@ -46,9 +46,9 @@
             role="columnheader"
             tabindex="0"
             :aria-sort="getSortAriaValue('status')"
-            aria-label="Sort by status"
+            :aria-label="$t('contact.sort.status')"
           >
-            Status
+            {{ $t("contact.table.status") }}
             <span class="sort-indicator" :aria-hidden="true" />
           </th>
           <th
@@ -58,12 +58,12 @@
             role="columnheader"
             tabindex="0"
             :aria-sort="getSortAriaValue('company')"
-            aria-label="Sort by company"
+            :aria-label="$t('contact.sort.company')"
           >
-            Company
+            {{ $t("contact.table.company") }}
             <span class="sort-indicator" :aria-hidden="true" />
           </th>
-          <th role="columnheader">Number</th>
+          <th role="columnheader">{{ $t("contact.table.number") }}</th>
           <th
             @click="toggleSort('email')"
             @keydown="handleKeydown($event, 'email')"
@@ -71,9 +71,9 @@
             role="columnheader"
             tabindex="0"
             :aria-sort="getSortAriaValue('email')"
-            aria-label="Sort by email"
+            :aria-label="$t('contact.sort.email')"
           >
-            Email
+            {{ $t("contact.table.email") }}
             <span class="sort-indicator" :aria-hidden="true" />
           </th>
         </tr>
@@ -88,9 +88,9 @@
             role="cell"
             aria-live="polite"
           >
-            <span role="status" aria-label="Loading contacts"
-              >Loading contacts...</span
-            >
+            <span role="status" aria-label="Loading contacts">{{
+              $t("contact.table.loading")
+            }}</span>
           </td>
         </tr>
 
@@ -102,7 +102,7 @@
             role="cell"
             aria-live="polite"
           >
-            <span role="status">No contacts found.</span>
+            <span role="status">{{ $t("contact.table.noContacts") }}</span>
           </td>
         </tr>
 
@@ -132,16 +132,29 @@
             <span
               class="contacts-table__status"
               :class="`contacts-table__status--${contact.status.toLowerCase()}`"
-              :aria-label="`Status: ${contact.status}`"
+              :aria-label="
+                locale === 'en'
+                  ? `Status: ${contact.status}`
+                  : `Statut: ${contact.status}`
+              "
               role="status"
             >
-              {{ contact.status }}
+              {{
+                contact.status
+                  ? $t(`contact.status.${contact.status.toLowerCase()}`)
+                  : ""
+              }}
             </span>
           </td>
           <td role="cell">
-            <span :aria-label="`Company: ${contact.company}`">{{
-              contact.company
-            }}</span>
+            <span
+              :aria-label="
+                locale === 'en'
+                  ? `Company: ${contact.company}`
+                  : `Entreprise: ${contact.company}`
+              "
+              >{{ contact.company }}</span
+            >
           </td>
           <td role="cell">
             <div class="contacts-table__phone">
@@ -149,12 +162,20 @@
                 v-if="getCountryFlag(contact.country)"
                 :is="getCountryFlag(contact.country)"
                 class="contacts-table__flag"
-                :aria-label="`${contact.country} flag`"
+                :aria-label="
+                  locale === 'en'
+                    ? `${contact.country} flag`
+                    : `Drapeau ${contact.country}`
+                "
                 role="img"
               />
               <span
                 class="contacts-table__phone-number"
-                :aria-label="`Phone: ${contact.phone}`"
+                :aria-label="
+                  locale === 'en'
+                    ? `Phone: ${contact.phone}`
+                    : `Téléphone: ${contact.phone}`
+                "
               >
                 {{ contact.phone }}
               </span>
@@ -163,7 +184,11 @@
           <td role="cell">
             <a
               :href="`mailto:${contact.email}`"
-              :aria-label="`Send email to ${contact.firstName} ${contact.lastName} at ${contact.email}`"
+              :aria-label="
+                locale === 'en'
+                  ? `Send email to ${contact.firstName} ${contact.lastName} at ${contact.email}`
+                  : `Envoyer un courriel à ${contact.firstName} ${contact.lastName} à ${contact.email}`
+              "
             >
               {{ contact.email }}
             </a>
@@ -182,6 +207,8 @@ import SvgoSweden from "@/assets/svg/icon-sweden.svg";
 import SvgoJapan from "@/assets/svg/icon-japan.svg";
 import SvgoPortugal from "@/assets/svg/icon-portugal.svg";
 import type { Contact, SortConfig } from "../../../types";
+
+const { locale } = useI18n();
 
 // define props
 const props = defineProps<{

@@ -1,0 +1,58 @@
+{
+  "header": {
+    "title": "Test Technique Ringover",
+    "home": "Accueil",
+    "contacts": "Contacts",
+    "themeLight": "Passer en mode clair",
+    "themeDark": "Passer en mode sombre"
+  },
+  "home": {
+    "welcome": "Bienvenue dans notre application !",
+    "description": "Ceci est une simple application Nuxt 4 construite pour l'évaluation technique de Ringover. Veuillez explorer la page Contacts pour voir la liste des contacts récupérés depuis le serveur.",
+    "cta": "Aller aux Contacts"
+  },
+  "contact": {
+    "title": "Contacts",
+    "cta": "Connectez votre CRM pour importer vos contacts",
+    "searchPlaceholder": "Rechercher",
+    "errorLoading": "Erreur lors du chargement des contacts.",
+    "retry": "Réessayer",
+    "loadingMore": "Chargement de plus...",
+    "table": {
+      "name": "Nom",
+      "status": "Statut",
+      "company": "Entreprise",
+      "number": "Numéro",
+      "email": "Courriel",
+      "noContacts": "Aucun contact trouvé.",
+      "loading": "Chargement des contacts..."
+    },
+    "filters": {
+      "all": "Tous",
+      "countryLabel": "Pays",
+      "statusLabel": "Statut",
+      "companyLabel": "Entreprise",
+      "reset": "Réinitialiser les filtres"
+    },
+    "status": {
+      "lead": "Prospect",
+      "proposal": "Proposition",
+      "negotiation": "Négociation",
+      "deal": "Affaire"
+    },
+    "countries": {
+      "us": "États-Unis",
+      "de": "Allemagne",
+      "sw": "Suède",
+      "jp": "Japon",
+      "pt": "Portugal",
+      "ca": "Canada"
+    },
+    "sort": {
+      "name": "Trier par nom",
+      "company": "Trier par entreprise",
+      "status": "Trier par statut",
+      "email": "Trier par courriel"
+    }
+  }
+}
