@@ -118,9 +118,9 @@ GET /api/contacts?page=1&limit=20&search=emma&sortBy=lastName&sortDir=asc
 
 L'implémentation des modes Sombre et Clair impliquent trois étapes majeures:
 
-- Ajouter des couleurs dans \_colors.scss pour chaque élément
-- Les rendre dynamiques en les ajoutant dans l'élément :root de l'application
-- Ajouter un bouton dans le header qui active/désactive la classe "theme-dark" sur le <body />
+- Ajouter des couleurs dans `_colors.scss` pour chaque élément
+- Les rendre dynamiques en les ajoutant dans l'élément `:root` de l'application
+- Ajouter un bouton dans le header qui active/désactive la classe `"theme-dark"` sur le `body`
 
 ## Nota Bene
 
